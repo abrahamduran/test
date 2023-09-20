@@ -25,7 +25,7 @@ import Combine
     }
 
     func fetchAccountData() async {
-        guard let account = await moneyService.getAccount() else { return }
+        guard let account = try? await moneyService.getAccount() else { return }
         accountBalance = account.balance.formatted(.currency(code: account.currency))
     }
 }
