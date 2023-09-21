@@ -19,7 +19,8 @@ Please review the existing assets and begin working on these features as per the
 
 ### Day 1
 - Designed the test plan for the app.
-- Reviewed the API and got unblocked from the questions about the challenge I had.
+- Reviewed the API and got unblocked from the questions about the assessment.
+- Reported an error with the API (which appears to only affect Safari/WebKit). **The scope of the assessment is not affected by this**.
 - Performed a minor refactor on `MoneyService` to propagate errors.
 - Implemented the `transactions` endpoint in MoneyService
 
