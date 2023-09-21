@@ -12,6 +12,7 @@ protocol MoneyServiceProtocol {
     var isBusy: AnyPublisher<Bool, Never> { get }
 
     func getAccount() async throws -> Account
+    func getTransactions(page: Int, limit: Int) async throws -> TransactionPage
 }
 
 enum MoneyServiceError: Error {
@@ -27,14 +28,25 @@ class MoneyService: MoneyServiceProtocol {
     private let session = URLSession.shared
 
     func getAccount() async throws -> Account {
-        try await getData("balance")
+        try await getData("balance", queryItems: nil)
     }
 
-    private func getData<T: Codable>(_ endpoint: String) async throws -> T {
+    func getTransactions(page: Int, limit: Int) async throws -> TransactionPage {
+        let params = [
+            URLQueryItem(name: "page", value: String(page)),
+            URLQueryItem(name: "limit", value: String(limit))
+        ]
+        return try await getData("transactions", queryItems: params)
+    }
+
+    private func getData<T: Codable>(_ endpoint: String, queryItems: [URLQueryItem]?) async throws -> T {
         _isBusy.send(true)
         defer { _isBusy.send(false) }
 
-        let dataURL = Self.serviceBaseURL.appending(component: endpoint)
+        var dataURL = Self.serviceBaseURL.appending(component: endpoint)
+        if let queryItems {
+            dataURL.append(queryItems: queryItems)
+        }
 
         do {
             let (data, response) = try await session.data(from: dataURL)
