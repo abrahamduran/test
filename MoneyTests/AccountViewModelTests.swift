@@ -13,12 +13,20 @@ final class AccountViewModelTests: XCTestCase {
     @MainActor func testFetchAccountData() async {
         let viewModel = AccountViewModel()
 
-        XCTAssertEqual(viewModel.accountBalance, "-")
-        XCTAssertFalse(viewModel.isBusy)
+        XCTAssertEqual(viewModel.accountBalance, .loading)
 
-        await viewModel.fetchAccountData()
+        await viewModel.fetchData()
 
-        XCTAssertNotEqual(viewModel.accountBalance, "-")
-        XCTAssertFalse(viewModel.isBusy)
+        XCTAssertNotEqual(viewModel.accountBalance, .loading)
+    }
+
+    @MainActor func testFetchTrasanctionsData() async {
+        let viewModel = AccountViewModel()
+
+        XCTAssertEqual(viewModel.transactions, .loading)
+
+        await viewModel.fetchData()
+
+        XCTAssertNotEqual(viewModel.transactions, .loading)
     }
 }

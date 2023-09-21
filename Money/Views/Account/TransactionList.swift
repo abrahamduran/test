@@ -11,6 +11,14 @@ struct TransactionList: View {
     let transactions: [Transaction]
 
     var body: some View {
+        if transactions.isEmpty {
+            empty
+        } else {
+            content
+        }
+    }
+
+    private var content: some View {
         List(transactions) { transaction in
             VStack {
                 HStack {
@@ -27,8 +35,23 @@ struct TransactionList: View {
                     .frame(height: 1)
             }
             .listRowSeparator(.hidden)
+            .accessibilityIdentifier("TransactionRow")
         }
         .listStyle(.plain)
+        .accessibilityIdentifier("TransactionList")
+    }
+
+    private var empty: some View {
+        VStack {
+            Text("No transactions to show")
+                .font(.headline.bold())
+                .foregroundStyle(.gray.opacity(0.7))
+
+            Text("Please check back later")
+                .foregroundStyle(.gray.opacity(0.7))
+        }
+        .padding()
+        .frame(maxWidth: .infinity)
     }
 }
 
@@ -45,4 +68,9 @@ struct TransactionList: View {
         Transaction(id: UUID(), title: "Dropbox", amount: 9.99, currency: "USD"),
         Transaction(id: UUID(), title: "Nintendo Switch Online", amount: 4.99, currency: "USD")
     ])
+}
+
+#Preview {
+
+    TransactionList(transactions: [])
 }

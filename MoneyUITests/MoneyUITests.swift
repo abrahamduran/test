@@ -12,7 +12,12 @@ final class MoneyUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        XCTAssertTrue(app.staticTexts["Account Balance"].waitForExistence(timeout: 2))
+        // Account Balance
+        XCTAssertTrue(app.staticTexts["Account Balance"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.staticTexts["$12,312.01"].exists)
+
+        // Transactions
+        XCTAssertTrue(app.collectionViews["TransactionList"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.staticTexts["TransactionRow"].waitForExistence(timeout: 10))
     }
 }

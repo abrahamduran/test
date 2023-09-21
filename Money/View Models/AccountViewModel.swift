@@ -31,7 +31,7 @@ import Combine
         await withTaskGroup(of: Void.self) { [weak self] group in
             guard let self else { return }
             group.addTask { await self.fetchAccountData() }
-            group.addTask { await self.fetchTransactions() }
+            group.addTask { await self.fetchTransactionsData() }
 
             await group.waitForAll()
         }
@@ -46,7 +46,7 @@ import Combine
         }
     }
 
-    private func fetchTransactions() async {
+    private func fetchTransactionsData() async {
         do {
             let page = try await moneyService.getTransactions(page: 0, limit: Constants.pageSize)
             transactions = .content(page.transactions)
