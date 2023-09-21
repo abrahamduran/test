@@ -18,15 +18,16 @@ struct AccountView: View {
                 .bold()
 
             HStack {
-                if viewModel.isBusy {
+                switch viewModel.accountBalance {
+                case .loading:
                     ProgressView()
-                } else {
-                    Text(viewModel.accountBalance)
+                case .content(let balance):
+                    Text(balance)
                         .font(.largeTitle)
                         .bold()
                 }
             }
-            .animation(.default, value: viewModel.isBusy)
+            .animation(.default, value: viewModel.accountBalance)
 
             Spacer()
         }

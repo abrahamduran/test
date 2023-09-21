@@ -9,23 +9,24 @@ import Foundation
 import Combine
 
 @MainActor class AccountViewModel: ObservableObject {
-    @Published private(set) var isBusy = false
-    @Published private(set) var accountBalance: String = "-"
+    enum ViewState<T: Equatable>: Equatable {
+        case loading
+        case content(T)
+    }
+
+    @Published private(set) var accountBalance: ViewState<String> = .loading
 
     private let moneyService = MoneyService()
     private var cancellables = Set<AnyCancellable>()
 
-    init() {
-        moneyService.isBusy
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] isBusy in
-                self?.isBusy = isBusy
-            }
-            .store(in: &cancellables)
-    }
+    init() { }
 
     func fetchAccountData() async {
-        guard let account = try? await moneyService.getAccount() else { return }
-        accountBalance = account.balance.formatted(.currency(code: account.currency))
+        do {
+            let account = try await moneyService.getAccount()
+            accountBalance = .content(account.balance.formatted(.currency(code: account.currency)))
+        } catch {
+            // TODO: some error handling
+        }
     }
 }
