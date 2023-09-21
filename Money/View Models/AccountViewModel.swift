@@ -19,13 +19,25 @@ import Combine
     }
 
     @Published private(set) var accountBalance: ViewState<String> = .loading
+    @Published private(set) var transactions: ViewState<[Transaction]> = .loading
 
     private let moneyService = MoneyService()
     private var cancellables = Set<AnyCancellable>()
 
     init() { }
 
-    func fetchAccountData() async {
+    func fetchData() async {
+        // Perform API Requests in parallel
+        await withTaskGroup(of: Void.self) { [weak self] group in
+            guard let self else { return }
+            group.addTask { await self.fetchAccountData() }
+            group.addTask { await self.fetchTransactions() }
+
+            await group.waitForAll()
+        }
+    }
+
+    private func fetchAccountData() async {
         do {
             let account = try await moneyService.getAccount()
             accountBalance = .content(account.balance.formatted(.currency(code: account.currency)))

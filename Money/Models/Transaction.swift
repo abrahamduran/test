@@ -7,9 +7,13 @@
 
 import Foundation
 
-struct Transaction: Codable, Equatable {
+struct Transaction: Codable, Equatable, Identifiable {
     let id: UUID
     let title: String
     let amount: Double
     let currency: String
+
+    var amountFormatted: String {
+        amount.formatted(.currency(code: currency))
+    }
 }

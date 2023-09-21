@@ -29,6 +29,21 @@ struct AccountView: View {
             }
             .animation(.default, value: viewModel.accountBalance)
 
+            VStack {
+                switch viewModel.transactions {
+                case .loading:
+                    Spacer()
+
+                    ProgressView()
+                        .frame(maxWidth: .infinity)
+
+                    Spacer()
+                case .content(let transactions):
+                    TransactionList(transactions: transactions)
+                }
+            }
+            .animation(.default, value: viewModel.transactions)
+
             Spacer()
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -40,7 +55,7 @@ struct AccountView: View {
             launchScreenStateManager.dismissLaunchScreen()
 
             Task {
-                await viewModel.fetchAccountData()
+                await viewModel.fetchData()
             }
         }
     }
