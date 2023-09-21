@@ -31,6 +31,12 @@ class MoneyService: MoneyServiceProtocol {
         try await getData("balance", queryItems: nil)
     }
 
+
+    /// Performs a GET request to the `/transactions` endpoint
+    /// - Parameters:
+    ///   - page: Page number 0 index
+    ///   - limit: Page size
+    /// - Returns: TransactionPage
     func getTransactions(page: Int, limit: Int) async throws -> TransactionPage {
         let params = [
             URLQueryItem(name: "page", value: String(page)),

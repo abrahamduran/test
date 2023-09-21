@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Transaction: Codable {
+struct Transaction: Codable, Equatable {
     let id: UUID
     let title: String
     let amount: Double
