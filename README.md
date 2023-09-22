@@ -31,6 +31,10 @@ Please review the existing assets and begin working on these features as per the
 - Added UI icon to indicate to the user the status of the network connection
 - Added unit and UI tests to cover the transaction changes
 
+### Day 3
+- Implemented error handling and recovery
+- Added unit tests to cover error handling and network conditions
+
 ## Test Plan
 
 <details>
@@ -88,3 +92,55 @@ Please review the existing assets and begin working on these features as per the
     - Test if premium features are accessible only after a successful in-app purchase. ⭕️
 
 </details>
+
+## Assessment Conclusion
+
+### Results
+During the timeframe for this assessment, the main functionalities requested by the client were implemented, those are:
+- Displaying the last ten transactions below the account balance
+- Adding offline support for the account balance and transactions
+- Implemented the style provided in the Figma
+
+I was also able to further enhance these functionalities by adding the following:
+- A network state indicator, so the user is aware of whether they are viewing the most recent transactions or a locally saved copy (which might be outdated)
+- The ability to handle errors and retry in case a network call fails
+
+Finally, we covered all these features with unit and UI tests to safeguard the code and its functionality from breaking. The code coverage reported is 92%.
+
+### Decisions made during the assessment
+
+**UserDefault for offline support**
+
+It’s crucial to consider the sensitivity of the data being stored. For instance, financial transactions are highly sensitive in nature. Therefore, storing such data in UserDefaults is not advisable as it’s not designed for that purpose. However, if the app is intended for a limited number of users, as data is fetched for a hardcoded account, we could get away with that approach. The ideal and future-proof solution would have been Core Data (or SwiftData if iOS 16 support can be dropped).
+
+The critical factor in choosing UserDefaults here is saving development time, as other options could mean more effort. The reasons I found UserDefault to be a capable solution here are:
+- The dataset to be stored is simple, with no constraints or relational relationships.
+- The dataset is not queryable.
+- The user can’t interact with the dataset
+- There are no rules to sync the dataset across devices.
+- The updating process for the offline data is pretty much “replace with whatever is on the backend”.
+
+**Refactoring `MoneyService` to propagate errors**
+
+Callers should be able to know and react when things go sideways, in this case, when an error from the API occurs. We could have changed the return type to be a `tuple` or a `Result<Success, Failure>`, I just preferred `throw` as it feels more natural with the `async/await` approach.
+
+**Refactoring `AccountViewModel` to use `ViewState`**
+
+Provide an isolated control over states (like loading or error) for `accountBalance` and `transactions` without creating multiple boolean properties (_"Enumerate, Don't Booleanate"_).
+
+### Next Steps
+If more time is allocated to this assessment, the next action would be adding support for the Premium Feature through In-App Purchases. This includes API integration, UI changes, integrating the `StoreKit` framework, and covering the functionality with appropriate tests.
+
+Additionally, I suggest allocating some time to enhance UI Testing so that we can alter the app's behavior by injecting some arguments. This could help us test under different scenarios, like forcing an offline state to test the behavior accordingly.
+
+### Screenshots
+
+| Online | Offline | Refreshing | Error |
+| ------ | ------- | ---------- | ----- |
+| ![online-state][] | ![offline-state][] | ![refreshing-state][] | ![error-state][] |
+
+<!-- screenshot files -->
+[online-state]: Screenshots/online-state.png
+[offline-state]: Screenshots/offline-state.png
+[refreshing-state]: Screenshots/refreshing-state.png
+[error-state]: Screenshots/error-state.png
