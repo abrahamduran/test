@@ -16,6 +16,7 @@ import Combine
     enum ViewState<T: Equatable>: Equatable {
         case loading
         case content(T)
+        case error
     }
 
     enum NetworkState {
@@ -41,6 +42,12 @@ import Combine
         configureNetworkState(networkMonitor: networkMonitor, repository: repository)
     }
 
+    func retry() async {
+        accountBalance = .loading
+        transactions = .loading
+        await fetchData()
+    }
+
     func fetchData() async {
         // Perform API Requests in parallel
         await withTaskGroup(of: Void.self) { [weak self] group in
@@ -58,7 +65,8 @@ import Combine
             accountBalance = .content(account.balanceFormatted)
             await repository.saveAccount(account)
         } catch {
-            // TODO: some error handling
+            guard networkState != .offline else { return }
+            accountBalance = .error
         }
     }
 
@@ -68,7 +76,8 @@ import Combine
             transactions = .content(page.transactions)
             await repository.saveTransactions(page)
         } catch {
-            // TODO: some error handling
+            guard networkState != .offline else { return }
+            transactions = .error
         }
     }
 

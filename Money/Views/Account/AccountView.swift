@@ -37,6 +37,8 @@ struct AccountView: View {
                     Spacer()
                 case .content(let transactions):
                     TransactionList(transactions: transactions)
+                case .error:
+                    errorView
                 }
             }
             .animation(.default, value: viewModel.transactions)
@@ -66,6 +68,8 @@ struct AccountView: View {
             Text(balance)
                 .font(.largeTitle)
                 .bold()
+        case .error:
+            EmptyView()
         }
     }
 
@@ -82,6 +86,27 @@ struct AccountView: View {
             }
         }
         .animation(.default, value: viewModel.networkState)
+    }
+
+    @ViewBuilder
+    private var errorView: some View {
+        Spacer()
+
+        Image(systemName: "exclamationmark.triangle.fill")
+            .foregroundStyle(.gray)
+            .font(.largeTitle)
+            .frame(maxWidth: .infinity)
+
+        Text("An error has ocurred")
+            .font(.headline.bold())
+            .foregroundStyle(.gray.opacity(0.7))
+
+        Button("Retry") {
+            Task { await viewModel.retry() }
+        }
+        .buttonStyle(.borderedProminent)
+
+        Spacer()
     }
 }
 
