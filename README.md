@@ -25,7 +25,7 @@ Please review the existing assets and begin working on these features as per the
 - Implemented the `transactions` endpoint in MoneyService
 
 ### Day 2
-- Refactored AcountViewModel to expose output properties wrapped in `ViewState`
+- Refactored `AccountViewModel` to expose output properties wrapped in `ViewState`
 - Implemented UI changes to display the last ten transactions
 - Implemented offline support for account balance and transactions
 - Added UI icon to indicate to the user the status of the network connection
