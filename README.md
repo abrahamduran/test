@@ -24,14 +24,21 @@ Please review the existing assets and begin working on these features as per the
 - Performed a minor refactor on `MoneyService` to propagate errors.
 - Implemented the `transactions` endpoint in MoneyService
 
+### Day 2
+- Refactored AcountViewModel to expose output properties wrapped in `ViewState`
+- Implemented UI changes to display the last ten transactions
+- Implemented offline support for account balance and transactions
+- Added UI icon to indicate to the user the status of the network connection
+- Added unit and UI tests to cover the transaction changes
+
 ## Test Plan
 
 <details>
 <summary>Test Category: Display Account Balance</summary>
 
 - **Fetch Account Balance Successfully**
-    - Test that the API call fetches the account balance correctly.
-    - Verify that the balance is displayed in the UI.
+    - Test that the API call fetches the account balance correctly. ✅
+    - Verify that the balance is displayed in the UI. ✅
 - **Fetch Account Balance Failure**
     - Simulate an API failure scenario.
     - Test if the app gracefully handles API failures (e.g., by displaying an error message).
@@ -44,8 +51,8 @@ Please review the existing assets and begin working on these features as per the
 <summary>Test Category: Display Last Ten Transactions</summary>
 
 - **Fetch Last Ten Transactions Successfully**
-    - Test that the API call fetches the last 10 transactions correctly.
-    - Verify that the transactions are displayed in the UI.
+    - Test that the API call fetches the last 10 transactions correctly. ✅
+    - Verify that the transactions are displayed in the UI. ✅
 - **Fetch Transactions Failure**
     - Simulate an API failure scenario.
     - Test if the app handles this gracefully (e.g., by displaying an error message).
