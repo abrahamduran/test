@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		173783912ABDF413003025AC /* MockMoneyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173783902ABDF413003025AC /* MockMoneyRepository.swift */; };
+		173783932ABDF9AB003025AC /* MockMoneyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173783922ABDF9AB003025AC /* MockMoneyService.swift */; };
+		173783952ABDFD01003025AC /* MockNetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173783942ABDFD01003025AC /* MockNetworkMonitor.swift */; };
 		17475A722ABCDC4A0069B14B /* MoneyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17475A712ABCDC4A0069B14B /* MoneyRepository.swift */; };
 		17C0A0822ABC802400F5F616 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3DFB82A8BD1E80024B927 /* AccountViewModel.swift */; };
 		17C0A0852ABC807100F5F616 /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C0A0842ABC807100F5F616 /* TransactionList.swift */; };
@@ -44,6 +47,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		173783902ABDF413003025AC /* MockMoneyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMoneyRepository.swift; sourceTree = "<group>"; };
+		173783922ABDF9AB003025AC /* MockMoneyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMoneyService.swift; sourceTree = "<group>"; };
+		173783942ABDFD01003025AC /* MockNetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkMonitor.swift; sourceTree = "<group>"; };
 		17475A712ABCDC4A0069B14B /* MoneyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyRepository.swift; sourceTree = "<group>"; };
 		17C0A0842ABC807100F5F616 /* TransactionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionList.swift; sourceTree = "<group>"; };
 		17C0A0872ABC951900F5F616 /* NetworkMonitorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitorService.swift; sourceTree = "<group>"; };
@@ -92,6 +98,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1737838F2ABDF405003025AC /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				173783902ABDF413003025AC /* MockMoneyRepository.swift */,
+				173783922ABDF9AB003025AC /* MockMoneyService.swift */,
+				173783942ABDFD01003025AC /* MockNetworkMonitor.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		17475A702ABCDC2D0069B14B /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +182,7 @@
 		1AB3DF882A8BC0B10024B927 /* MoneyTests */ = {
 			isa = PBXGroup;
 			children = (
+				1737838F2ABDF405003025AC /* Mocks */,
 				1AB3DF892A8BC0B10024B927 /* AccountViewModelTests.swift */,
 				1AE43B0A2A8E734000F15978 /* MoneyServiceTests.swift */,
 			);
@@ -372,7 +389,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				173783932ABDF9AB003025AC /* MockMoneyService.swift in Sources */,
+				173783912ABDF413003025AC /* MockMoneyRepository.swift in Sources */,
 				1AB3DF8A2A8BC0B10024B927 /* AccountViewModelTests.swift in Sources */,
+				173783952ABDFD01003025AC /* MockNetworkMonitor.swift in Sources */,
 				1AE43B0B2A8E734000F15978 /* MoneyServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
