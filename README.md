@@ -34,6 +34,7 @@ Please review the existing assets and begin working on these features as per the
 ### Day 3
 - Implemented error handling and recovery
 - Added unit tests to cover error handling and network conditions
+- Finished documenting progress, conclusion, decisions and next steps
 
 ## Test Plan
 
