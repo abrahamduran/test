@@ -43,7 +43,7 @@ Please review the existing assets and begin working on these features as per the
     - Simulate an API failure scenario.
     - Test if the app gracefully handles API failures (e.g., by displaying an error message).
 - **Offline Account Balance**
-    - Test if the app correctly retrieves and displays the last saved account balance when offline.
+    - Test if the app correctly retrieves and displays the last saved account balance when offline. ✅
 
 </details>
 
@@ -57,9 +57,9 @@ Please review the existing assets and begin working on these features as per the
     - Simulate an API failure scenario.
     - Test if the app handles this gracefully (e.g., by displaying an error message).
 - **Offline Transactions**
-    - Test if the app correctly retrieves and displays the last saved transactions when offline.
+    - Test if the app correctly retrieves and displays the last saved transactions when offline. ✅
 - **Empty Transactions List**
-    - Test how the app handles an empty transactions list.
+    - Test how the app handles an empty transactions list. ✅
 
 </details>
 
@@ -67,13 +67,13 @@ Please review the existing assets and begin working on these features as per the
 <summary>Test Category: Offline Support</summary>
 
 - **Save Account Balance Offline**
-    - Test if the account balance is saved correctly for offline access.
+    - Test if the account balance is saved correctly for offline access. ✅
 - **Save Transactions Offline**
-    - Test if the last 10 transactions are saved correctly for offline access.
+    - Test if the last 10 transactions are saved correctly for offline access. ✅
 - **Network Reconnection**
-    - Test if the app refreshes the data when network connection is restored.
+    - Test if the app refreshes the data when network connection is restored. ✅
 - **Stale Data Indicator**
-    - Test if the app correctly displays an indicator for stale data when offline.
+    - Test if the app correctly displays an indicator for stale data when offline. ✅
 
 </details>
 
@@ -81,10 +81,10 @@ Please review the existing assets and begin working on these features as per the
 <summary>Test Category: In-App Purchase (Optional)</summary>
 
 - **In-App Purchase Success**
-    - Test successful in-app purchase flow.
+    - Test successful in-app purchase flow. ⭕️
 - **In-App Purchase Failure**
-    - Test failure scenarios for in-app purchase.
+    - Test failure scenarios for in-app purchase. ⭕️
 - **Premium Features Accessibility**
-    - Test if premium features are accessible only after a successful in-app purchase.
+    - Test if premium features are accessible only after a successful in-app purchase. ⭕️
 
 </details>

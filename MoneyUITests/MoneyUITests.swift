@@ -14,7 +14,7 @@ final class MoneyUITests: XCTestCase {
 
         // Account Balance
         XCTAssertTrue(app.staticTexts["Account Balance"].waitForExistence(timeout: 10))
-        XCTAssertTrue(app.staticTexts["$12,312.01"].exists)
+        XCTAssertTrue(app.staticTexts["$12,312.01"].waitForExistence(timeout: 10))
 
         // Transactions
         XCTAssertTrue(app.collectionViews["TransactionList"].waitForExistence(timeout: 10))
