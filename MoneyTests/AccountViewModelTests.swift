@@ -122,4 +122,41 @@ final class AccountViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.networkState, .online)
         await fulfillment(of: [expectation], timeout: 10)
     }
+
+    func testFetchDataHandlesErrorsGracefully() async {
+        let api = MockMoneyService()
+        let viewModel = AccountViewModel(moneyService: api)
+
+        XCTAssertEqual(viewModel.accountBalance, .loading)
+        XCTAssertEqual(viewModel.transactions, .loading)
+
+        await viewModel.fetchData()
+
+        XCTAssertEqual(viewModel.accountBalance, .error)
+        XCTAssertEqual(viewModel.transactions, .error)
+    }
+
+    func testCanRecoverFromErrorState() async {
+        let expected = (
+            account: Account(balance: 1200, currency: "DOP"),
+            page: TransactionPage(total: 1, count: 1, last: true, transactions: [
+                Transaction(id: UUID(), title: "Refreshed", amount: 500, currency: "DOP")
+            ])
+        )
+        let api = MockMoneyService()
+        let viewModel = AccountViewModel(moneyService: api)
+
+        await viewModel.fetchData()
+
+        XCTAssertEqual(viewModel.accountBalance, .error)
+        XCTAssertEqual(viewModel.transactions, .error)
+
+        api.account = expected.account
+        api.transactions = expected.page
+
+        await viewModel.retry()
+
+        XCTAssertEqual(viewModel.accountBalance, .content(expected.account.balanceFormatted))
+        XCTAssertEqual(viewModel.transactions, .content(expected.page.transactions))
+    }
 }

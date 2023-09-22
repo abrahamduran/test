@@ -12,19 +12,16 @@ import Combine
 final class MockMoneyService: MoneyServiceProtocol {
     var account: Account?
     var transactions: TransactionPage?
+    var error = MoneyServiceError.serverError
     var isBusy: AnyPublisher<Bool, Never> = PassthroughSubject().eraseToAnyPublisher()
 
     func getAccount() async throws -> Account {
-        guard let account else {
-            throw MoneyServiceError.serverError
-        }
+        guard let account else { throw error }
         return account
     }
     
     func getTransactions(page: Int, limit: Int) async throws -> Money.TransactionPage {
-        guard let transactions else {
-            throw MoneyServiceError.serverError
-        }
+        guard let transactions else { throw error }
         return transactions
     }
 }

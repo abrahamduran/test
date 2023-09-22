@@ -40,8 +40,8 @@ Please review the existing assets and begin working on these features as per the
     - Test that the API call fetches the account balance correctly. ✅
     - Verify that the balance is displayed in the UI. ✅
 - **Fetch Account Balance Failure**
-    - Simulate an API failure scenario.
-    - Test if the app gracefully handles API failures (e.g., by displaying an error message).
+    - Simulate an API failure scenario. ✅
+    - Test if the app gracefully handles API failures (e.g., by displaying an error message). ✅
 - **Offline Account Balance**
     - Test if the app correctly retrieves and displays the last saved account balance when offline. ✅
 
@@ -54,8 +54,8 @@ Please review the existing assets and begin working on these features as per the
     - Test that the API call fetches the last 10 transactions correctly. ✅
     - Verify that the transactions are displayed in the UI. ✅
 - **Fetch Transactions Failure**
-    - Simulate an API failure scenario.
-    - Test if the app handles this gracefully (e.g., by displaying an error message).
+    - Simulate an API failure scenario. ✅
+    - Test if the app handles this gracefully (e.g., by displaying an error message). ✅
 - **Offline Transactions**
     - Test if the app correctly retrieves and displays the last saved transactions when offline. ✅
 - **Empty Transactions List**

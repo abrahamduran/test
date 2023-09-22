@@ -46,12 +46,11 @@ final class MoneyServiceTests: XCTestCase {
     func testGetTransactions() async throws {
         let service = MoneyService()
 
-        let account = try await service.getTransactions(page: 0, limit: 10)
-        let unwrappedAccount = try XCTUnwrap(account)
+        let page = try await service.getTransactions(page: 0, limit: 10)
 
-        XCTAssertEqual(unwrappedAccount.count, 10)
-        XCTAssertEqual(unwrappedAccount.total, 22)
-        XCTAssertEqual(unwrappedAccount.last, false)
-        XCTAssertEqual(unwrappedAccount.transactions.count, 10)
+        XCTAssertEqual(page.count, 10)
+        XCTAssertEqual(page.total, 22)
+        XCTAssertEqual(page.last, false)
+        XCTAssertEqual(page.transactions.count, 10)
     }
 }
