@@ -15,4 +15,8 @@ struct Account: Codable {
         case balance = "amount"
         case currency
     }
+
+    var balanceFormatted: String {
+        balance.formatted(.currency(code: currency))
+    }
 }
