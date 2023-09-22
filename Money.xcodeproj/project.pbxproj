@@ -10,6 +10,7 @@
 		17475A722ABCDC4A0069B14B /* MoneyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17475A712ABCDC4A0069B14B /* MoneyRepository.swift */; };
 		17C0A0822ABC802400F5F616 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3DFB82A8BD1E80024B927 /* AccountViewModel.swift */; };
 		17C0A0852ABC807100F5F616 /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C0A0842ABC807100F5F616 /* TransactionList.swift */; };
+		17C0A0882ABC951900F5F616 /* NetworkMonitorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C0A0872ABC951900F5F616 /* NetworkMonitorService.swift */; };
 		17DF5A612ABB6E54008E7EE2 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DF5A602ABB6E54008E7EE2 /* Transaction.swift */; };
 		17DF5A632ABB6F0E008E7EE2 /* TransactionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DF5A622ABB6F0E008E7EE2 /* TransactionPage.swift */; };
 		1AB3DF792A8BC0B00024B927 /* MoneyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3DF782A8BC0B00024B927 /* MoneyApp.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		17475A712ABCDC4A0069B14B /* MoneyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyRepository.swift; sourceTree = "<group>"; };
 		17C0A0842ABC807100F5F616 /* TransactionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionList.swift; sourceTree = "<group>"; };
+		17C0A0872ABC951900F5F616 /* NetworkMonitorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitorService.swift; sourceTree = "<group>"; };
 		17DF5A602ABB6E54008E7EE2 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		17DF5A622ABB6F0E008E7EE2 /* TransactionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionPage.swift; sourceTree = "<group>"; };
 		1AB3DF752A8BC0B00024B927 /* Money.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Money.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +109,14 @@
 			path = Account;
 			sourceTree = "<group>";
 		};
+		17C0A0862ABC950000F5F616 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				17C0A0872ABC951900F5F616 /* NetworkMonitorService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		1AB3DF6C2A8BC0B00024B927 = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +148,7 @@
 				1AB3DFB72A8BD1DA0024B927 /* View Models */,
 				1AB3DFA92A8BC9820024B927 /* API */,
 				17475A702ABCDC2D0069B14B /* Repositories */,
+				17C0A0862ABC950000F5F616 /* Services */,
 				1AB3DF7C2A8BC0B10024B927 /* Assets.xcassets */,
 				1AB3DF7E2A8BC0B10024B927 /* Preview Content */,
 			);
@@ -342,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17C0A0882ABC951900F5F616 /* NetworkMonitorService.swift in Sources */,
 				1AB3DFAB2A8BC99E0024B927 /* MoneyService.swift in Sources */,
 				1AB3DF7B2A8BC0B00024B927 /* AccountView.swift in Sources */,
 				17DF5A612ABB6E54008E7EE2 /* Transaction.swift in Sources */,
