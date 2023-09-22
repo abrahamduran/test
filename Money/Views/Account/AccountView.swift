@@ -18,14 +18,11 @@ struct AccountView: View {
                 .bold()
 
             HStack {
-                switch viewModel.accountBalance {
-                case .loading:
-                    ProgressView()
-                case .content(let balance):
-                    Text(balance)
-                        .font(.largeTitle)
-                        .bold()
-                }
+                accountBalance
+
+                Spacer()
+
+                networkIndicator
             }
             .animation(.default, value: viewModel.accountBalance)
 
@@ -58,6 +55,33 @@ struct AccountView: View {
                 await viewModel.fetchData()
             }
         }
+    }
+
+    @ViewBuilder
+    private var accountBalance: some View {
+        switch viewModel.accountBalance {
+        case .loading:
+            ProgressView()
+        case .content(let balance):
+            Text(balance)
+                .font(.largeTitle)
+                .bold()
+        }
+    }
+
+    private var networkIndicator: some View {
+        HStack {
+            switch viewModel.networkState {
+            case .offline:
+                Image(systemName: "wifi.slash")
+                    .foregroundStyle(.red)
+            case .online:
+                Image(systemName: "wifi")
+            case .refreshing:
+                ProgressView()
+            }
+        }
+        .animation(.default, value: viewModel.networkState)
     }
 }
 
